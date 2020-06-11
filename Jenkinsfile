@@ -15,9 +15,11 @@ pipeline {
     stage('push image') {
       steps {
         checkout scm
-        docker.withRegistry('http://172.18.31.33:5000') {
-          def customImage = docker.build("ant-home-page:${env.BUILD_ID}")
-          customImage.push()
+        script {
+          docker.withRegistry('http://172.18.31.33:5000') {
+            def customImage = docker.build("ant-home-page:${env.BUILD_ID}")
+            customImage.push()
+          }
         }
       }
     }
