@@ -1,0 +1,7 @@
+version: "3"
+services:
+  home-page:
+    build: ./
+    container_name: "ant-home-page"
+    ports:
+      - 3111:80

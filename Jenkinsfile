@@ -1,15 +1,24 @@
 pipeline {
   agent any
+
   stages {
     stage('test') {
+      agent {
+        docker { image 'node:10' }
+      }
       steps {
-        sh 'echo \'Test\''
+        sh "npm run install"
+        sh 'bash ./CI/test.sh'
       }
     }
 
-    stage('build') {
+    stage('push image') {
       steps {
-        sh 'echo \'Build\''
+        checkout scm
+        docker.withRegistry('http://172.18.31.33:5000') {
+          def customImage = docker.build("ant-home-page:${env.BUILD_ID}")
+          customImage.push()
+        }
       }
     }
 
