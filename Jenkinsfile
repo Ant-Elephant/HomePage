@@ -2,15 +2,6 @@ pipeline {
   agent any
 
   stages {
-    stage('test') {
-      agent {
-        docker { image 'node:10' }
-      }
-      steps {
-        sh "npm run install"
-        sh 'bash ./CI/test.sh'
-      }
-    }
 
     stage('push image') {
       steps {
