@@ -1,9 +1,10 @@
 def projectName = 'ant-home-page'
 def buildId = 'test'
 def deployIP = '120.77.254.178:5000'
+def registryIP = '120.77.254.178:5000'
 def remoteUser = 'root'
 def containerName = "${projectName}:${buildId}"
-def imageName = "${deployIP}/${projectName}:${buildId}"
+def imageName = "${projectName}:${buildId}"
 
 pipeline {
   agent any
@@ -25,7 +26,7 @@ pipeline {
       agent any
       steps {
         sshagent(credentials : ['120.77.254.178']) {
-          sh "ssh -o StrictHostKeyChecking=no ${remoteUser}@${deployIP};docker stop ${containerName};(docker rm ${containerName} || true);docker run -p 3111:80 -d --name ${containerName} ${imageName}"
+          sh "ssh -o StrictHostKeyChecking=no ${remoteUser}@${deployIP};docker stop ${containerName};(docker rm ${containerName} || true);docker run -p 3111:80 -d --name ${containerName} ${registryIP}/${imageName}"
         }
       }
     }
