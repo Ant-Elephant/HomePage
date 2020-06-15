@@ -1,9 +1,9 @@
 def projectName = 'ant-home-page'
 def buildId = 'test'
-def deployIP = '120.77.254.178'
+def deployIP = '120.77.254.178:5000'
 def remoteUser = 'root'
 def containerName = "${projectName}:${buildId}"
-def imageName = "${containerName}/${projectName}:${buildId}"
+def imageName = "${deployIP}/${projectName}:${buildId}"
 
 pipeline {
   agent any
