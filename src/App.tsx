@@ -8,7 +8,7 @@ function App() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
-            Ant-Elephant
+            Ant-Elephant. DEVOPS WORKFLOW
         </p>
       </header>
     </div>
