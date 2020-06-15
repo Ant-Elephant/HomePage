@@ -25,7 +25,7 @@ pipeline {
     stage('deploy') {
       steps {
         sshagent(credentials : ['120.77.254.178']) {
-          sh "ssh -o StrictHostKeyChecking=no ${remoteUser}@${deployIP};docker stop ${containerName};(docker rm ${containerName} || true);docker run -p 3111:80 -d --name ${containerName} ${registryIP}/${imageName}"
+          sh "ssh -o StrictHostKeyChecking=no ${remoteUser}@${deployIP};(docker stop ${containerName} || true);(docker rm ${containerName} || true);docker run -p 3111:80 -d --name ${containerName} ${registryIP}/${imageName}"
         }
       }
     }
