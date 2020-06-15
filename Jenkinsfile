@@ -3,7 +3,7 @@ def buildId = 'test'
 def deployIP = '120.77.254.178'
 def registryIP = '172.18.31.33:5000'
 def remoteUser = 'root'
-def containerName = "${projectName}:${buildId}"
+def containerName = "${projectName}-${buildId}"
 def imageName = "${projectName}:${buildId}"
 
 pipeline {
